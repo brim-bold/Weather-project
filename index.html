@@ -28,13 +28,14 @@
                   class="form-control"
                   id="city-input"
                   aria-label="Search"
+                  autocomplete="off"
                 />
                 <button type="submit" class="btn btn-info">Search</button>
               </div>
             </form>
           </div>
         </div>
-        <h1>Seattle</h1>
+        <h1 id="city">Seattle</h1>
         <ul>
           <li id="time"></li>
           <li id="current-weather"></li>
@@ -42,9 +43,8 @@
         <div class="col-6">
           <img src="" alt="" id="icon" />
           <p>
-            <span class="current-temp"></span> <a href="#">°F</a>|<a href="#"
-              >°C</a
-            >
+            <span class="current-temp" id="current-temp"></span>
+            <a href="#">°F</a>|<a href="#">°C</a>
           </p>
         </div>
         <div class="col-6">
@@ -54,7 +54,7 @@
           </ul>
 
           <div class="col-10">
-            <p><span id="high-temp"></span> <span id="low-temp"></span></p>
+            <p><span id="max-temp"></span> <span id="min-temp"></span></p>
           </div>
         </div>
       </div>
