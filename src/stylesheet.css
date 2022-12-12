@@ -1,14 +1,25 @@
-.container {
+.weather-app {
   padding: 25px;
   border: 1px solid #000;
   border-radius: 10px;
+  margin-bottom: 3px;
 }
 
-.container-wrapper {
+.container {
   padding-top: 20px;
   max-width: 600px;
   min-width: 580px;
   margin: 0 auto;
+}
+
+.submitButton {
+  background-color: #ff7f50;
+}
+
+.submitButton:hover {
+  background-color: #fc723f;
+  color: #fff;
+  transition: 0.3s ease-in-out;
 }
 
 h1 {
@@ -23,6 +34,11 @@ p {
 
 .header {
   padding-bottom: 5px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
 }
 
 li {
@@ -93,4 +109,17 @@ li {
 .inactive:hover {
   color: #d14512;
   transition: 0.17s ease-in-out;
+}
+
+.additional-weather {
+  line-height: 25px;
+}
+
+small a {
+  color: #ff7f50;
+}
+
+small a:hover {
+  color: #d14512;
+  transition: 0.2s ease-in-out;
 }

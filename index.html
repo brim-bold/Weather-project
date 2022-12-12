@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="src/stylesheet.css" />
   </head>
   <body>
-    <div class="container-wrapper">
-      <div class="container">
-        <div class="row justify-content-end">
-          <div class="col-sm-9">
+    <div class="container">
+      <div class="weather-app">
+        <div class="row justify-content-end search-bar">
+          <div class="col-sm-10">
             <form action="" id="city-search">
               <div class="input-group mb-3">
                 <input
@@ -30,40 +30,62 @@
                   aria-label="Search"
                   autocomplete="off"
                 />
-                <button type="submit" class="btn btn-info">Search</button>
+                <button type="submit" class="btn btn-info submitButton">
+                  Search
+                </button>
               </div>
             </form>
           </div>
           <div class="col-2">
-        <button type="button" class="btn btn-secondary" id="current-location">
-          Current
-        </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="current-location"
+            >
+              Current
+            </button>
+          </div>
         </div>
         <h1 id="city"></h1>
         <ul class="header">
           <li id="time"></li>
           <li id="current-weather"></li>
         </ul>
-        <div class="col-7 current">
-          <div class="d-flex weather-temperature">
-          <img src="" alt="" id="icon" class="icon" />
-          <p>
-            <span class="current-temp" id="current-temp"></span>
-            <span class="units"><a href="#" class="active" id="fahrenheit">°F</a> | <a href="#" id="celsius" class="inactive">°C</a></span>
-          </p>
-          <p class="maxMin">HI <span id="max-temp" class="max-temp"></span> LO <span id="min-temp" class="min-temp"></span></p>
-
-        </div>
-        </div>
-        <div class="col-5">
-          <ul class="additional-weather">
-            <li>Humidity: <span id="humidity"></span>%</li>
-            <li>Wind: <span id="wind"></span></li>
-          </ul>
-
+        <div class="row">
+          <div class="col-6 current">
+            <div class="d-flex weather-temperature">
+              <img src="" alt="" id="icon" class="icon" />
+              <p>
+                <span class="current-temp" id="current-temp"></span>
+                <span class="units"
+                  ><a href="#" class="active" id="fahrenheit">°F</a> |
+                  <a href="#" id="celsius" class="inactive">°C</a></span
+                >
+              </p>
+              <p class="maxMin">
+                HI <span id="max-temp" class="max-temp"></span> LO
+                <span id="min-temp" class="min-temp"></span>
+              </p>
+            </div>
+          </div>
+          <div class="col-6 pt-1">
+            <ul class="additional-weather">
+              <li>Humidity: <span id="humidity"></span>%</li>
+              <li>Wind: <span id="wind"></span></li>
+            </ul>
+          </div>
         </div>
       </div>
+      <small
+        ><a
+          href="https://github.com/brim-bold/Weather-project.git"
+          target="_blank"
+          >open-source code</a
+        >
+        by Jaylene Jeanpierre</small
+      >
     </div>
+
     <script src="src/weather.js"></script>
   </body>
 </html>
