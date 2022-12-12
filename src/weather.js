@@ -70,7 +70,7 @@ function updateWeather(response) {
   if (units === "imperial") {
     wind.innerHTML = `${Math.round(response.data.wind.speed)} mph`;
   } else {
-    wind.innerHTML = `${Math.round(response.data.wind.speed)} kph`;
+    wind.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
   }
 }
 
@@ -135,9 +135,12 @@ function metricConversion(event) {
 
     let wind = document.querySelector("#wind");
     windSpeed = windSpeed * 1.609;
-    wind.innerHTML = `${Math.round(windSpeed * 1.609)} kph`;
+    wind.innerHTML = `${Math.round(windSpeed * 1.609)} km/h`;
 
     units = "metric";
+
+    fahrenheit.classList.remove("active");
+    celsius.classList.add("active");
   }
 }
 
@@ -162,9 +165,12 @@ function imperialConversion(event) {
 
     let wind = document.querySelector("#wind");
     windSpeed = windSpeed / 1.609;
-    wind.innerHTML = `${Math.round(windSpeed)} kph`;
+    wind.innerHTML = `${Math.round(windSpeed)} mph`;
 
     units = "imperial";
+
+    celsius.classList.remove("active");
+    fahrenheit.classList.add("active");
   }
 }
 
