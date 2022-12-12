@@ -1,5 +1,6 @@
 .weather-app {
   padding: 25px;
+  padding-bottom: 3px;
   border: 1px solid rgb(193, 193, 193);
   border-radius: 10px;
   box-shadow: 1px 1px 8px rgb(170, 170, 170);
@@ -23,15 +24,11 @@
   transition: 0.3s ease-in-out;
 }
 
-.search-bar {
-  margin: 5px auto;
-  padding-bottom: 5px;
-}
-
 h1 {
   font-size: 35px;
   margin-top: 7px;
   margin-bottom: 5px;
+  padding-top: 5px;
 }
 
 p {
@@ -39,7 +36,8 @@ p {
 }
 
 .header {
-  padding-bottom: 15px;
+  padding-top: 4px;
+  padding-bottom: 20px;
   color: rgb(92, 92, 92);
 }
 
@@ -126,6 +124,7 @@ li {
 }
 
 .additional-weather {
+  padding: 4px;
   line-height: 25px;
 }
 
