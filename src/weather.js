@@ -31,12 +31,8 @@ function updateTime() {
   time.innerHTML = `Last update: ${day} ${hour}:${minutes}`;
 }
 
-updateTime();
-
 //code to update weather in application
 function updateWeather(response) {
-  console.log(response);
-
   let city = document.querySelector("#city");
   city.innerHTML = `${response.data.name}`;
 
@@ -84,3 +80,30 @@ function citySearch() {
 //event listener for citySearch
 let form = document.querySelector("#city-search");
 form.addEventListener("submit", citySearch);
+
+//current location weather feature
+function getPosition(position) {
+  let lat = position.coords.latitude;
+  let long = position.coords.longitude;
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(updateWeather);
+}
+
+function currentLocation(event) {
+  event.preventDefault();
+
+  navigator.geolocation.getCurrentPosition(getPosition);
+}
+
+let current = document.querySelector("#current-location");
+current.addEventListener("click", currentLocation);
+
+function defaultAction() {
+  updateTime();
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=new+york&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(updateWeather);
+}
+
+defaultAction();
