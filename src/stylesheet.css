@@ -1,12 +1,13 @@
 .weather-app {
   padding: 25px;
-  border: 1px solid #000;
+  border: 1px solid rgb(193, 193, 193);
   border-radius: 10px;
-  margin-bottom: 3px;
+  box-shadow: 1px 1px 8px rgb(170, 170, 170);
+  margin-bottom: 10px;
 }
 
 .container {
-  padding-top: 20px;
+  padding-top: 30px;
   max-width: 600px;
   min-width: 580px;
   margin: 0 auto;
@@ -22,18 +23,24 @@
   transition: 0.3s ease-in-out;
 }
 
+.search-bar {
+  margin: 5px auto;
+  padding-bottom: 5px;
+}
+
 h1 {
   font-size: 35px;
   margin-top: 7px;
-  margin-bottom: 0;
+  margin-bottom: 5px;
 }
 
 p {
-  line-height: 15px;
+  line-height: 20px;
 }
 
 .header {
-  padding-bottom: 5px;
+  padding-bottom: 15px;
+  color: rgb(92, 92, 92);
 }
 
 ul {
@@ -56,21 +63,30 @@ li {
   font-size: 55px;
   font-weight: 400;
   line-height: 70px;
-  margin-left: 0;
+  margin-left: 4px;
+  margin-bottom: 0;
 }
+
+.d-flex {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 .maxMin {
-  display: block;
-  position: relative;
-  width: 100px;
-  top: 69px;
-  left: -66px;
   font-size: 14px;
   color: rgb(92, 92, 92);
+  padding-top: 0;
+  margin-top: 0;
+  text-align: center;
+  position: relative;
+  top: -30px;
+  left: -5px;
 }
 
 .max-temp {
   font-weight: 400;
   padding-right: 2px;
+  color: rgb(88, 88, 88);
 }
 
 .min-temp {
@@ -85,10 +101,8 @@ li {
 }
 
 .units {
-  display: block;
   position: relative;
-  top: -55px;
-  right: -68px;
+  top: -28px;
 }
 
 .active {

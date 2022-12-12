@@ -35,6 +35,8 @@ function updateTime() {
 
 //code to update weather in application
 function updateWeather(response) {
+  updateTime();
+
   let city = document.querySelector("#city");
   city.innerHTML = `${response.data.name}`;
 
