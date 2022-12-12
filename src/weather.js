@@ -10,8 +10,10 @@ let days = [
 ];
 
 let apiKey = "1d046e6aaa399d63de49ffe2fb5a384e";
-let fahrenheit = null;
-let celsius = null;
+let tempCurrent = null;
+let min = null;
+let max = null;
+let windSpeed = null;
 let units = "imperial";
 
 //code to display the lasted time the page was updated
@@ -46,6 +48,12 @@ function updateWeather(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
+  //global temperature set
+  tempCurrent = response.data.main.temp;
+  min = response.data.main.temp_min;
+  max = response.data.main.temp_max;
+  windSpeed = response.data.wind.speed;
+
   let temperature = document.querySelector("#current-temp");
   temperature.innerHTML = `${Math.round(response.data.main.temp)}`;
 
@@ -59,11 +67,10 @@ function updateWeather(response) {
   humidity.innerHTML = `${response.data.main.humidity}`;
 
   let wind = document.querySelector("#wind");
-  let windSpeed = Math.round(response.data.wind.speed);
   if (units === "imperial") {
-    wind.innerHTML = `${windSpeed} mph`;
+    wind.innerHTML = `${Math.round(response.data.wind.speed)} mph`;
   } else {
-    wind.innerHTML = `${windSpeed} kph`;
+    wind.innerHTML = `${Math.round(response.data.wind.speed)} kph`;
   }
 }
 
@@ -99,6 +106,7 @@ function currentLocation(event) {
 let current = document.querySelector("#current-location");
 current.addEventListener("click", currentLocation);
 
+//default action by weather application upon loading
 function defaultAction() {
   updateTime();
 
@@ -107,3 +115,54 @@ function defaultAction() {
 }
 
 defaultAction();
+
+//conversion functionality
+function metricConversion(event) {
+  event.preventDefault();
+
+  if (units === "imperial") {
+    let currentTempConversion = document.querySelector("#current-temp");
+    currentTempConversion.innerHTML = `${Math.round(
+      ((tempCurrent - 32) * 5) / 9
+    )}`;
+
+    let maxTemp = document.querySelector("#max-temp");
+    maxTemp.innerHTML = `${Math.round(((tempCurrent - 32) * 5) / 9)}`;
+
+    let minTemp = document.querySelector("#min-temp");
+    minTemp.innerHTML = `${Math.round(((min - 32) * 5) / 9)}`;
+
+    let wind = document.querySelector("#wind");
+    wind.innerHTML = `${Math.round(windSpeed * 1.609)} kph`;
+
+    units = "metric";
+  }
+}
+
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", metricConversion);
+
+function imperialConversion(event) {
+  event.preventDefault();
+
+  if (units === "metric") {
+    let currentTempConversion = document.querySelector("#current-temp");
+    currentTempConversion.innerHTML = `${Math.round(
+      (tempCurrent * 9) / 5 + 32
+    )}`;
+
+    let maxTemp = document.querySelector("#max-temp");
+    maxTemp.innerHTML = `${Math.round((tempCurrent * 9) / 5 + 32)}`;
+
+    let minTemp = document.querySelector("#min-temp");
+    minTemp.innerHTML = `${Math.round((tempCurrent * 9) / 5 + 32)}`;
+
+    let wind = document.querySelector("#wind");
+    wind.innerHTML = `${Math.round(windSpeed / 1.609)} kph`;
+
+    units = "imperial";
+  }
+}
+
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", imperialConversion);
