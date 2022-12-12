@@ -122,17 +122,19 @@ function metricConversion(event) {
 
   if (units === "imperial") {
     let currentTempConversion = document.querySelector("#current-temp");
-    currentTempConversion.innerHTML = `${Math.round(
-      ((tempCurrent - 32) * 5) / 9
-    )}`;
+    tempCurrent = ((tempCurrent - 32) * 5) / 9;
+    currentTempConversion.innerHTML = `${Math.round(tempCurrent)}`;
 
     let maxTemp = document.querySelector("#max-temp");
-    maxTemp.innerHTML = `${Math.round(((tempCurrent - 32) * 5) / 9)}`;
+    max = ((max - 32) * 5) / 9;
+    maxTemp.innerHTML = `${Math.round(max)}`;
 
     let minTemp = document.querySelector("#min-temp");
-    minTemp.innerHTML = `${Math.round(((min - 32) * 5) / 9)}`;
+    min = ((min - 32) * 5) / 9;
+    minTemp.innerHTML = `${Math.round(min)}`;
 
     let wind = document.querySelector("#wind");
+    windSpeed = windSpeed * 1.609;
     wind.innerHTML = `${Math.round(windSpeed * 1.609)} kph`;
 
     units = "metric";
@@ -147,18 +149,20 @@ function imperialConversion(event) {
 
   if (units === "metric") {
     let currentTempConversion = document.querySelector("#current-temp");
-    currentTempConversion.innerHTML = `${Math.round(
-      (tempCurrent * 9) / 5 + 32
-    )}`;
+    tempCurrent = (tempCurrent * 9) / 5 + 32;
+    currentTempConversion.innerHTML = `${Math.round(tempCurrent)}`;
 
     let maxTemp = document.querySelector("#max-temp");
-    maxTemp.innerHTML = `${Math.round((tempCurrent * 9) / 5 + 32)}`;
+    max = (max * 9) / 5 + 32;
+    maxTemp.innerHTML = `${Math.round(max)}`;
 
     let minTemp = document.querySelector("#min-temp");
-    minTemp.innerHTML = `${Math.round((tempCurrent * 9) / 5 + 32)}`;
+    min = (min * 9) / 5 + 32;
+    minTemp.innerHTML = `${Math.round(min)}`;
 
     let wind = document.querySelector("#wind");
-    wind.innerHTML = `${Math.round(windSpeed / 1.609)} kph`;
+    windSpeed = windSpeed / 1.609;
+    wind.innerHTML = `${Math.round(windSpeed)} kph`;
 
     units = "imperial";
   }
