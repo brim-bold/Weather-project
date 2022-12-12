@@ -1,8 +1,86 @@
 .container {
+  padding: 25px;
   border: 1px solid #000;
+  border-radius: 10px;
 }
 
 .container-wrapper {
+  padding-top: 20px;
   max-width: 600px;
+  min-width: 580px;
   margin: 0 auto;
+}
+
+h1 {
+  font-size: 35px;
+  margin-top: 7px;
+  margin-bottom: 0;
+}
+
+p {
+  line-height: 15px;
+}
+
+.header {
+  padding-bottom: 5px;
+}
+
+li {
+  list-style: none;
+}
+
+.current {
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.current-temp {
+  font-size: 55px;
+  font-weight: 400;
+  line-height: 70px;
+  margin-left: 0;
+}
+.maxMin {
+  display: block;
+  position: relative;
+  width: 100px;
+  top: 69px;
+  left: -66px;
+  font-size: 14px;
+  color: rgb(92, 92, 92);
+}
+
+.max-temp {
+  font-weight: 400;
+  padding-right: 2px;
+}
+
+.min-temp {
+  font-weight: 300;
+}
+
+.icon {
+  margin-left: 0;
+  padding-left: 0;
+  position: relative;
+  top: -13px;
+}
+
+.units {
+  display: block;
+  position: relative;
+  top: -55px;
+  right: -68px;
+}
+
+.active {
+  text-decoration: none;
+  color: #000;
+  cursor: default;
+}
+
+.active:hover {
+  color: #000;
 }

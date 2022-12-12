@@ -39,27 +39,28 @@
           Current
         </button>
         </div>
-        <h1 id="city">Seattle</h1>
-        <ul>
+        <h1 id="city"></h1>
+        <ul class="header">
           <li id="time"></li>
           <li id="current-weather"></li>
         </ul>
-        <div class="col-6">
-          <img src="" alt="" id="icon" />
+        <div class="col-7 current">
+          <div class="d-flex weather-temperature">
+          <img src="" alt="" id="icon" class="icon" />
           <p>
             <span class="current-temp" id="current-temp"></span>
-            <a href="#" id="fahrenheit">°F</a>|<a href="#" id="celsius">°C</a>
+            <span class="units"><a href="#" class="active" id="fahrenheit">°F</a> | <a href="#" id="celsius">°C</a></span>
           </p>
+          <p class="maxMin">HI <span id="max-temp" class="max-temp"></span> LO <span id="min-temp" class="min-temp"></span></p>
+
         </div>
-        <div class="col-6">
-          <ul>
+        </div>
+        <div class="col-5">
+          <ul class="additional-weather">
             <li>Humidity: <span id="humidity"></span>%</li>
             <li>Wind: <span id="wind"></span></li>
           </ul>
 
-          <div class="col-10">
-            <p><span id="max-temp"></span> <span id="min-temp"></span></p>
-          </div>
         </div>
       </div>
     </div>
