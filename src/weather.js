@@ -141,6 +141,8 @@ function metricConversion(event) {
 
     fahrenheit.classList.remove("active");
     celsius.classList.add("active");
+    fahrenheit.classList.add("inactive");
+    celsius.classList.remove("inactive");
   }
 }
 
@@ -171,6 +173,8 @@ function imperialConversion(event) {
 
     celsius.classList.remove("active");
     fahrenheit.classList.add("active");
+    celsius.classList.add("inactive");
+    fahrenheit.classList.remove("inactive");
   }
 }
 
