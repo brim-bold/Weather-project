@@ -33,6 +33,26 @@ function updateTime() {
   time.innerHTML = `Last update: ${day} ${hour}:${minutes}`;
 }
 
+//code to display 6 day forecast
+function displayForecast() {
+  let forecast = document.querySelector("#forecast");
+  forecast.innerHTML = `<div class="row justify-content-center">`;
+  forecast.innerHTML += `<div class="col-2 text-center">
+              <p class="day-forecast">Sun</p>
+              <img
+                src="http://openweathermap.org/img/wn/50n@2x.png"
+                alt="snow"
+                id="icon-forecast"
+                class="icon-forecast"
+              />
+              <p class="temperature-forecast">
+                <span id="max-temp-forecast" class="max-temp">20</span>
+                <span id="min-temp-forecast" class="min-temp">5</span>
+              </p>
+            </div>`;
+  forecast.innerHTML += `</div>`;
+}
+
 //code to update weather in application
 function updateWeather(response) {
   updateTime();
@@ -74,6 +94,8 @@ function updateWeather(response) {
   } else {
     wind.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
   }
+
+  displayForecast();
 }
 
 //code for search engine functionality
