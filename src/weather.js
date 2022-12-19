@@ -9,7 +9,7 @@ let days = [
   "Saturday",
 ];
 
-let apiKey = "1d046e6aaa399d63de49ffe2fb5a384e";
+let apiKey = "288fc2o04bt43eb21ce31fcd35acba08";
 let tempCurrent = null;
 let min = null;
 let max = null;
@@ -34,7 +34,19 @@ function updateTime() {
 }
 
 //code to display 6 day forecast
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response);
+
+  //set min and max temperature global variables
+  min = response.data.daily[0].temperature.minimum;
+  max = response.data.daily[0].temperature.maximum;
+
+  let temperatureMax = document.querySelector("#max-temp");
+  temperatureMax.innerHTML = `${Math.round(max)}`;
+
+  let temperatureMin = document.querySelector("#min-temp");
+  temperatureMin.innerHTML = `${Math.round(min)}`;
+
   let forecast = document.querySelector("#forecast");
   forecast.innerHTML = `<div class="row justify-content-center">`;
   forecast.innerHTML += `<div class="col-2 text-center">
@@ -53,40 +65,47 @@ function displayForecast() {
   forecast.innerHTML += `</div>`;
 }
 
+function updateForecast(coords) {
+  console.log(coords);
+  let latitude = coords.latitude;
+  let longitude = coords.longitude;
+  console.log(latitude);
+  console.log(longitude);
+
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
+  //https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}
+
+  https: axios.get(apiUrl).then(displayForecast);
+}
+
 //code to update weather in application
 function updateWeather(response) {
   updateTime();
 
+  console.log(response);
+
   let city = document.querySelector("#city");
-  city.innerHTML = `${response.data.name}`;
+  city.innerHTML = `${response.data.city}`;
 
   let weather = document.querySelector("#current-weather");
-  weather.innerHTML = `${response.data.weather[0].description}`;
+  weather.innerHTML = `${response.data.condition.description}`;
 
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
+  iconElement.setAttribute("alt", response.data.condition.description);
 
   //global temperature set
-  tempCurrent = response.data.main.temp;
-  min = response.data.main.temp_min;
-  max = response.data.main.temp_max;
+  tempCurrent = response.data.temperature.current;
   windSpeed = response.data.wind.speed;
 
   let temperature = document.querySelector("#current-temp");
-  temperature.innerHTML = `${Math.round(response.data.main.temp)}`;
-
-  let temperatureMax = document.querySelector("#max-temp");
-  temperatureMax.innerHTML = `${Math.round(response.data.main.temp_max)}`;
-
-  let temperatureMin = document.querySelector("#min-temp");
-  temperatureMin.innerHTML = `${Math.round(response.data.main.temp_min)}`;
+  temperature.innerHTML = `${Math.round(response.data.temperature.current)}`;
 
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = `${response.data.main.humidity}`;
+  humidity.innerHTML = `${response.data.temperature.humidity}`;
 
   let wind = document.querySelector("#wind");
   if (units === "imperial") {
@@ -95,7 +114,7 @@ function updateWeather(response) {
     wind.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
   }
 
-  displayForecast();
+  updateForecast(response.data.coordinates);
 }
 
 //code for search engine functionality
@@ -103,9 +122,10 @@ function citySearch() {
   event.preventDefault();
 
   let cityInput = document.querySelector("#city-input");
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityInput.value}&key=${apiKey}&units=${units}`;
+  //https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${units}
 
-  axios.get(apiUrl).then(updateWeather);
+  https: axios.get(apiUrl).then(updateWeather);
 }
 
 //event listener for citySearch
@@ -114,11 +134,12 @@ form.addEventListener("submit", citySearch);
 
 //current location weather feature
 function getPosition(position) {
-  let lat = position.coords.latitude;
-  let long = position.coords.longitude;
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial`;
-  axios.get(apiUrl).then(updateWeather);
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
+  //https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial
+  https: axios.get(apiUrl).then(updateWeather);
 }
 
 function currentLocation(event) {
@@ -134,8 +155,9 @@ current.addEventListener("click", currentLocation);
 function defaultAction() {
   updateTime();
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=new+york&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(updateWeather);
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=new+york&key=${apiKey}&units=${units}`;
+  //https://api.openweathermap.org/data/2.5/weather?q=new+york&appid=${apiKey}&units=${units}
+  https: axios.get(apiUrl).then(updateWeather);
 }
 
 defaultAction();
