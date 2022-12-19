@@ -146,7 +146,7 @@ li {
 .temperature-forecast {
   padding-top: 0;
   margin-top: 0;
-  font-size: 12px;
+  font-size: 13px;
   position: relative;
   top: -10px;
 }
@@ -158,4 +158,55 @@ small a {
 small a:hover {
   color: #d14512;
   transition: 0.2s ease-in-out;
+}
+
+.dark {
+  background-color: rgb(46, 46, 46);
+  color: rgb(233, 233, 233);
+}
+.dark .weather-app {
+  background-color: rgb(43, 43, 43);
+  border: 1px solid rgb(33, 33, 33);
+  box-shadow: 1px 1px 8px rgb(27, 27, 27);
+}
+.dark .input-group {
+  border: rgb(152, 152, 152);
+}
+.dark .form-control {
+  background-color: rgb(237, 237, 237);
+}
+.dark .submitButton {
+  color: #fff;
+  border: rgb(39, 39, 39);
+}
+.dark .submitButton:hover {
+  color: #000;
+  border: rgb(39, 39, 39);
+}
+.dark .current-location {
+  background-color: rgb(74, 74, 74);
+  border: rgb(39, 39, 39);
+}
+.dark .current-location:hover {
+  background-color: rgb(94, 94, 94);
+  border: rgb(39, 39, 39);
+  transition: 0.3s ease-in-out;
+}
+.dark .temperature-forecast {
+  color: rgb(214, 214, 214);
+}
+.dark .maxMin {
+  color: rgb(214, 214, 214);
+}
+.dark .max-temp {
+  color: rgb(200, 200, 200);
+}
+.dark .header {
+  color: rgb(214, 214, 214);
+}
+.dark .active {
+  color: rgb(214, 214, 214);
+}
+.dark .active:hover {
+  color: rgb(214, 214, 214);
 }

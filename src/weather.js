@@ -118,6 +118,16 @@ function updateWeather(response) {
   );
   iconElement.setAttribute("alt", response.data.condition.description);
 
+  //check for night
+  if (response.data.condition.icon.includes("night")) {
+    let mode = document.querySelector("body");
+    mode.classList.add("dark");
+  } else {
+    let mode = document.querySelector("body");
+    if (mode.classList.contains("dark")) {
+      mode.classList.remove("dark");
+    }
+  }
   //global temperature set
   tempCurrent = response.data.temperature.current;
   windSpeed = response.data.wind.speed;
