@@ -80,10 +80,10 @@ function displayForecast(response) {
               <p class="temperature-forecast">
                 <span id="max-temp-forecast-index${index}" class="max-temp">${Math.round(
           forecastDay.temperature.maximum
-        )}</span>
+        )}</span>°
                 <span id="min-temp-forecast-index${index}" class="min-temp">${Math.round(
           forecastDay.temperature.minimum
-        )}</span>
+        )}</span>°
               </p>
             </div>`;
       forecastTempMax.push(forecastDay.temperature.maximum);
@@ -158,7 +158,6 @@ function getPosition(position) {
   let longitude = position.coords.longitude;
 
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=${units}`;
-  //https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial
   https: axios.get(apiUrl).then(updateWeather);
 }
 
@@ -175,8 +174,7 @@ current.addEventListener("click", currentLocation);
 function defaultAction() {
   updateTime();
 
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=new+york&key=${apiKey}&units=${units}`;
-  //https://api.openweathermap.org/data/2.5/weather?q=new+york&appid=${apiKey}&units=${units}
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=bronx&key=${apiKey}&units=${units}`;
   https: axios.get(apiUrl).then(updateWeather);
 }
 
@@ -265,10 +263,6 @@ function imperialConversion(event) {
       let newMax = (forecastTempMax[forecastDay] * 9) / 5 + 32;
       dayMax.innerHTML = `${Math.round(newMax)}`;
       forecastTempMax[forecastDay] = newMax;
-
-      console.log(forecastDay);
-      console.log(forecastTempMin[forecastDay]);
-      console.log(forecastTempMax[forecastDay]);
     });
 
     units = "imperial";
