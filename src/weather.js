@@ -33,6 +33,16 @@ function updateTime() {
   time.innerHTML = `Last update: ${day} ${hour}:${minutes}`;
 }
 
+//code to format timestamp received by api weather forecast call
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  let day = days[date.getDay()];
+
+  return day;
+}
+
 //code to display 6 day forecast
 function displayForecast(response) {
   console.log(response);
@@ -47,22 +57,34 @@ function displayForecast(response) {
   let temperatureMin = document.querySelector("#min-temp");
   temperatureMin.innerHTML = `${Math.round(min)}`;
 
-  let forecast = document.querySelector("#forecast");
-  forecast.innerHTML = `<div class="row justify-content-center">`;
-  forecast.innerHTML += `<div class="col-2 text-center">
-              <p class="day-forecast">Sun</p>
+  let forecast = response.data.daily;
+  console.log(forecast);
+
+  let forecastHTML = document.querySelector("#forecast");
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0) {
+      forecastHTML.innerHTML =
+        forecastHTML.innerHTML +
+        `<div class="col-2 text-center">
+              <p class="day-forecast">${formatDay(forecastDay.time)}</p>
               <img
-                src="http://openweathermap.org/img/wn/50n@2x.png"
-                alt="snow"
+                src="${forecastDay.condition.icon_url}"
+                alt="${forecastDay.condition.description}"
                 id="icon-forecast"
                 class="icon-forecast"
               />
               <p class="temperature-forecast">
-                <span id="max-temp-forecast" class="max-temp">20</span>
-                <span id="min-temp-forecast" class="min-temp">5</span>
+                <span id="max-temp-forecast" class="max-temp">${Math.round(
+                  forecastDay.temperature.maximum
+                )}</span>
+                <span id="min-temp-forecast" class="min-temp">${Math.round(
+                  forecastDay.temperature.minimum
+                )}</span>
               </p>
             </div>`;
-  forecast.innerHTML += `</div>`;
+    }
+  });
 }
 
 function updateForecast(coords) {
