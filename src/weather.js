@@ -174,7 +174,7 @@ current.addEventListener("click", currentLocation);
 function defaultAction() {
   updateTime();
 
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=bronx&key=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=brooklyn&key=${apiKey}&units=${units}`;
   https: axios.get(apiUrl).then(updateWeather);
 }
 
